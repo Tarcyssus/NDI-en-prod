@@ -10,7 +10,7 @@
 ---
 
 ## 📦 Dépôt Git
-👉 [Lien vers le dépôt GitLab](https://forge.iut-larochelle.fr/labs-iut-info/etudiants/nuit-info-en-prod)
+👉 [Lien vers le dépôt Github](https://github.com/Tarcyssus/NDI-en-prod)
 
 ---
 
@@ -29,8 +29,9 @@ Assurez-vous d’avoir installé :
 
 ### 2️⃣ Cloner le dépôt
 ```bash
-git clone https://forge.iut-larochelle.fr/labs-iut-info/etudiants/nuit-info-en-prod/ndi-front.git
-cd ndi-front
+git clone https://github.com/Tarcyssus/NDI-en-prod.git
+cd NDI-en-prod
+git checkout Front
 ```
 
 ### 3️⃣​ Lancer le projet
