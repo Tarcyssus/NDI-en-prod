@@ -30,8 +30,7 @@ Assurez-vous d’avoir installé :
 ### 2️⃣ Cloner le dépôt
 ```bash
 git clone https://github.com/Tarcyssus/NDI-en-prod.git
-cd ndi-back
-git checkout Back
+cd NDI-en-prod
 ```
 
 ### 3️⃣​ Lancer le projet
