@@ -1,0 +1,171 @@
+.page3-style {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: url("./assets/fond2.jpg") no-repeat top right fixed !important;
+    background-size: cover !important;
+    font-family: 'IM Fell French Canon', serif; 
+    color: #ffffff;
+}
+
+.ma-sante-container {
+    margin-top: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+h1 {
+    font-family: "Inknut Antiqua", serif;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 64px;
+    margin: 0;
+    padding: 0;  
+}
+
+h2 {
+    font-family: "IM Fell French Canon SC", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 40px;
+}
+
+.page3-style body {
+    background: url("./assets/fond2.jpg") no-repeat top right fixed !important;
+    background-size: cover !important;
+}
+
+.start-button {
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    border: none;
+    width: 331px;
+    height: 74px;
+    font-family: "IM Fell French Canon SC", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 40px;
+    color: black;
+
+    /* --- NOUVEAUX AJOUTS --- */
+    cursor: pointer; /* Change la souris en main */
+    transition: all 0.3s ease-in-out; /* Rend l'animation fluide */
+}
+
+/* L'état au survol */
+.start-button:hover {
+    transform: scale(1.05); /* Agrandit le bouton de 5% */
+    background-color: #ffffff; /* Le gris devient blanc pur */
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5); /* Ajoute une lueur externe */
+}
+
+/* Styles spécifiques pour la section "Ma santé" */
+.ma-sante-container {
+    max-width: 920px;
+    margin: 100px auto 60px auto;
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 18px;
+    background: rgba(0,0,0,0.25); /* léger fond pour lisibilité sur l'image */
+    border-radius: 14px;
+}
+
+.ma-sante-container h1 {
+    font-family: 'IM Fell French Canon', serif; /* conserve la police */
+    font-size: 48px; /* réduit pour meilleure lisibilité */
+    line-height: 1.05;
+    margin: 0;
+    color: #ffffff;
+    font-weight: 900; /* plus gras pour hiérarchie */
+    letter-spacing: -0.02em;
+}
+
+.ma-sante-container h2 {
+    font-family: 'IM Fell French Canon SC', serif;
+    font-size: 28px;
+    margin: 0;
+    color: #fff;
+    font-weight: 700; /* semi-bold */
+    margin-top: 6px;
+}
+
+.ma-sante-container p {
+    font-family: 'IM Fell French Canon', serif;
+    font-size: 18px;
+    margin: 0;
+    color: #f3f6f9;
+    max-width: 760px;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.ma-sante-container .lead {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #fff;
+}
+
+.conseils-card {
+    width: 100%;
+    text-align: left;
+    background: rgba(255,255,255,0.06);
+    padding: 18px 22px;
+    border-radius: 10px;
+}
+
+.conseils-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.conseils-card p {
+    margin: 0 0 12px 0;
+    color: #e9eef6;
+}
+
+.loading-text, .error-text {
+    font-size: 18px;
+    color: #fff;
+    font-weight: 600; /* un peu plus visible */
+}
+
+.error-text {
+    color: #ffdddd;
+    background: rgba(255,0,0,0.08);
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+/* bouton start adaptatif */
+.start-button {
+    width: min(360px, 80%);
+    height: 66px;
+    font-size: 22px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 720px) {
+    .ma-sante-container {
+        margin-top: 80px;
+        padding: 28px 16px;
+    }
+    .ma-sante-container h1 { font-size: 34px; }
+    .ma-sante-container h2 { font-size: 20px; }
+    .ma-sante-container p { font-size: 16px; }
+    .start-button { height: 58px; font-size: 18px; }
+}
+
+@media (min-width: 1400px) {
+    .ma-sante-container h1 { font-size: 72px; }
+    .ma-sante-container h2 { font-size: 36px; }
+}

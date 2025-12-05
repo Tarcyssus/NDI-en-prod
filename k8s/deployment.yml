@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dp-ndi-en-prod-frontend #Nom du service
+  namespace: ns-ndi-en-prod #Namespace de sockage
+spec:
+  replicas: 3 # 3 RUNNERS IDENTIQUES
+  selector:
+    matchLabels:
+      component: web
+  template: # Type des runners
+    metadata:
+      labels:
+        component: web
+    spec:
+      containers: # Specs des containers
+        - name: ndi-en-prod-frontend-container
+          image: $CI_REGISTRY/$CI_PROJET/$DOCKER_IMAGE_TAG
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: gitlab-auth

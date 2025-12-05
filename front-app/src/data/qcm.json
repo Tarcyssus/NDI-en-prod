@@ -1,0 +1,298 @@
+{
+  "themes": {
+    "Decouvrir_NIRD": [
+      {
+        "question": "Que signifie l'acronyme NIRD ?",
+        "description": "Choisissez la bonne signification de NIRD.",
+        "answers": [
+          "Nutella, Internet, Raclette, Donuts",
+          "Numérique, Innovant, Réactif, Dynamique",
+          "Nouvelle Initiative pour la Réussite Digitale",
+          "Numérique, Inclusif, Responsable, Durable"
+        ],
+        "correct_answer": 4,
+        "feedback": "NIRD signifie : Numérique, Inclusif, Responsable, Durable."
+      },
+      {
+        "question": "Quelle est l'objectif du projet NIRD ?",
+        "description": "Sélectionnez l’objectif réel du projet.",
+        "answers": [
+          "Accompagner le développement du numérique dans l'espace.",
+          "Former la nouvelle génération de jedi.",
+          "Construire un numérique éducatif plus autonome, plus durable, plus éthique.",
+          "Détruire tous les projets numériques qui ne sont pas open-sources ou qui récoltent nos données."
+        ],
+        "correct_answer": 3,
+        "feedback": "Le projet vise un numérique éducatif autonome, durable et éthique."
+      },
+      {
+        "question": "Face à quelle menace le projet NIRD tente-t-il de résister ?",
+        "description": "Repérez la vraie menace citée par le NIRD.",
+        "answers": [
+          "La fin des frites à la cantine.",
+          "La domination croissante des GAFAM et autres grandes entreprises, dont l’influence numérique met en péril notre liberté.",
+          "L’invasion imminente d’une armée de robots qui veulent tous nous remplacer…",
+          "Le réchauffement climatique et la surconsommation de masse."
+        ],
+        "correct_answer": 2,
+        "feedback": "Le projet cherche à limiter la dépendance aux GAFAM et à leurs écosystèmes fermés."
+      },
+      {
+        "question": "Quel domaine est le principal champ d'action du projet NIRD ?",
+        "description": "Choisissez la réponse correcte.",
+        "answers": [
+          "Les services gouvernementaux",
+          "Le système éducatif (établissements scolaires, enseignants, services académiques)"
+        ],
+        "correct_answer": 2,
+        "feedback": "Le NIRD intervient principalement dans le système éducatif."
+      },
+      {
+        "question": "Donner deux actions que mettent en place les acteurs du projet NIRD.",
+        "description": "Sélectionnez la réponse correcte parmi les propositions.",
+        "answers": [
+          "Sensibiliser les équipes éducatives à la sobriété numérique et reconditionner des ordinateurs.",
+          "Favoriser les solutions numériques locales et développer une plateforme de partage de ressources entre écoles de la région.",
+          "Promouvoir l’usage de Linux pour lutter contre l’obsolescence programmée et instaurer des ateliers de réparation de smartphones dans les établissements.",
+          "Reconditionner des ordinateurs et proposer un accompagnement personnalisé pour aider les enseignants à créer leurs premiers logiciels éducatifs."
+        ],
+        "correct_answer": 1,
+        "feedback": "Les acteurs du NIRD sensibilisent à la sobriété numérique et reconditionnent du matériel."
+      },
+      {
+        "question": "L'une des missions du projet NIRD est d'inciter les établissements scolaires à choisir une distribution de Linux pour leurs ordinateurs, laquelle de ces raisons est fausse ?",
+        "description": "Trouvez l’argument inventé.",
+        "answers": [
+          "Pour favoriser l’utilisation de solutions libres et locales, maîtrisées par les établissements.",
+          "Pour permettre aux ordinateurs de fonctionner sans électricité grâce au “mode basse énergie” de Linux.",
+          "Pour réduire l'obsolescence programmée et prolonger la durée de vie des ordinateurs.",
+          "Pour diminuer l’empreinte écologique en limitant la consommation de ressources numériques."
+        ],
+        "correct_answer": 2,
+        "feedback": "Linux ne permet évidemment pas de fonctionner sans électricité !"
+      }
+    ],
+    "Numerique": [
+      {
+        "question": "Que signifie l’expression “open source” ?",
+        "description": "Identifiez la vraie définition.",
+        "answers": [
+          "Un logiciel dont le code est accessible et modifiable par tous.",
+          "Un logiciel gratuit mais impossible à modifier.",
+          "Un logiciel qui fonctionne uniquement si le PC est ouvert physiquement.",
+          "Une version premium réservée aux développeurs professionnels."
+        ],
+        "correct_answer": 1,
+        "feedback": "L’open source repose sur la transparence et la liberté de modification."
+      },
+      {
+        "question": "Quel est un avantage du cloud computing ?",
+        "description": "Choisissez la bonne réponse.",
+        "answers": [
+          "Pouvoir stocker physiquement les nuages dans un data center.",
+          "Accéder à ses données depuis n’importe quel appareil.",
+          "Garantir qu’aucune donnée ne sera jamais perdue.",
+          "Augmenter les performances de son PC sans changer de matériel."
+        ],
+        "correct_answer": 2,
+        "feedback": "Le cloud permet un accès distant aux données."
+      },
+      {
+        "question": "Quel est l’un des enjeux majeurs de la cybersécurité ?",
+        "description": "Choisissez la réponse correcte.",
+        "answers": [
+          "Réduire automatiquement les factures d’électricité.",
+          "Empêcher les adolescents de passer plus de 10h par jour sur TikTok.",
+          "Protéger les données personnelles contre les attaques et intrusions.",
+          "Doubler la puissance des processeurs sans les modifier."
+        ],
+        "correct_answer": 3,
+        "feedback": "La cybersécurité vise principalement à protéger données et systèmes."
+      },
+      {
+        "question": "À quoi sert la mise à jour d’un logiciel ?",
+        "description": "Choisissez la bonne réponse.",
+        "answers": [
+          "Transformer le PC en grille-pain pendant 5 secondes.",
+          "Corriger des bugs et améliorer les performances.",
+          "Apprendre automatiquement à programmer.",
+          "Ajouter une surprise aléatoire au démarrage."
+        ],
+        "correct_answer": 2,
+        "feedback": "Les mises à jour améliorent sécurité et stabilité."
+      },
+      {
+        "question": "Quel outil permet de versionner du code ?",
+        "description": "Indiquez le bon outil.",
+        "answers": [
+          "La bande magnétique de mamie pour enregistrer les modifications",
+          "Git",
+          "Google Maps",
+          "Photoshop"
+        ],
+        "correct_answer": 2,
+        "feedback": "Git est l’outil de versionnement le plus répandu."
+      }
+    ],
+    "Ecologie": [
+      {
+        "question": "Quel est l’un des principaux gaz responsables de l’effet de serre ?",
+        "description": "Choisissez le bon gaz.",
+        "answers": [
+          "L’hélium des ballons de fête",
+          "Le parfum “printemps frais” des supermarchés",
+          "Le gaz hilarant utilisé par les clowns",
+          "Le dioxyde de carbone (CO₂)"
+        ],
+        "correct_answer": 4,
+        "feedback": "Le CO₂ est le principal contributeur à l’effet de serre."
+      },
+      {
+        "question": "Quelle action contribue réellement à réduire la consommation d’énergie ?",
+        "description": "Choisissez la vraie action.",
+        "answers": [
+          "Mettre le frigo sur “mode turbo” pour qu’il refroidisse moins longtemps.",
+          "Écouter de la musique classique pour calmer les prises électriques.",
+          "Laisser la lumière allumée “au cas où”.",
+          "Éteindre les appareils lorsqu’ils ne sont pas utilisés."
+        ],
+        "correct_answer": 4,
+        "feedback": "Éteindre les appareils réduit réellement la consommation."
+      },
+      {
+        "question": "Quel est un objectif de la biodiversité ?",
+        "description": "Choisissez la réponse correcte.",
+        "answers": [
+          "Créer une forêt composée uniquement de licornes.",
+          "Maintenir de nombreux écosystèmes en bonne santé.",
+          "Obliger tous les animaux à devenir végétariens.",
+          "Réduire la taille des océans pour économiser l’eau."
+        ],
+        "correct_answer": 2,
+        "feedback": "La biodiversité garantit des écosystèmes fonctionnels."
+      },
+      {
+        "question": "Quelle est une solution pour réduire les déchets plastiques ?",
+        "description": "Choisissez la bonne solution.",
+        "answers": [
+          "Jeter ses déchets dans un trou et “croiser les doigts”.",
+          "Transformer son salon en décharge municipale.",
+          "Acheter uniquement du plastique invisible.",
+          "Utiliser des gourdes réutilisables."
+        ],
+        "correct_answer": 4,
+        "feedback": "Utiliser des contenants réutilisables réduit les déchets."
+      },
+      {
+        "question": "Pourquoi faut-il protéger les océans ?",
+        "description": "Choisissez la raison correcte.",
+        "answers": [
+          "Pour empêcher les poissons de s’échapper sur la terre ferme.",
+          "Parce qu’ils cachent peut-être encore le Titanic version 2.",
+          "Pour éviter que les vagues deviennent “payantes”.",
+          "Ils régulent le climat et abritent une immense biodiversité."
+        ],
+        "correct_answer": 4,
+        "feedback": "Les océans jouent un rôle vital pour le climat et la vie."
+      }
+    ],
+    "RSE_by_Design": [
+      {
+        "question": "Que signifie “RSE by design” dans un projet numérique ?",
+        "description": "Sélectionnez la bonne définition.",
+        "answers": [
+          "Ajouter un logo vert sur l’interface pour montrer que c’est écolo.",
+          "Rendre tout le site compatible avec les plantes vertes du bureau.",
+          "Promettre d’être responsable… mais seulement après la mise en production.",
+          "Intégrer les principes de responsabilité sociale et environnementale dès la conception du projet."
+        ],
+        "correct_answer": 4,
+        "feedback": "Le RSE by design implique une approche responsable dès la conception."
+      },
+      {
+        "question": "Quel est un des piliers du “RSE by design” ?",
+        "description": "Sélectionnez un vrai principe.",
+        "answers": [
+          "Supprimer toutes les fonctionnalités pour ne plus consommer d’énergie.",
+          "Choisir la couleur de l’application en fonction de la météo.",
+          "Ajouter une IA qui dit “bonjour” à chaque clic pour humaniser l’expérience.",
+          "Impliquer les utilisateurs dans la conception de services responsables."
+        ],
+        "correct_answer": 4,
+        "feedback": "L’implication des utilisateurs est un pilier central."
+      },
+      {
+        "question": "Quel exemple illustre une démarche RSE by design ?",
+        "description": "Choisissez l’exemple correct.",
+        "answers": [
+          "Exiger que le site ne soit ouvert que les jours pairs pour économiser du serveur.",
+          "Obliger les utilisateurs à fermer toutes les autres apps avant d’utiliser la vôtre.",
+          "Ajouter un compteur de clics pour “motiver une consommation raisonnable”.",
+          "Prévoir des fonctionnalités accessibles pour les publics en situation de handicap."
+        ],
+        "correct_answer": 4,
+        "feedback": "L’accessibilité est un enjeu essentiel du numérique responsable."
+      },
+      {
+        "question": "Qu'entend-on par “engager les utilisateurs” dans un projet RSE by design ?",
+        "description": "Sélectionnez la bonne définition.",
+        "answers": [
+          "Leur proposer de miner des cryptomonnaies pour financer le projet.",
+          "Leur demander de réécrire entièrement la documentation API.",
+          "Les inviter à co-construire des solutions plus éthiques et durables.",
+          "Leur envoyer un mail “RSE” toutes les 3 minutes."
+        ],
+        "correct_answer": 3,
+        "feedback": "Le RSE by design valorise la co-construction avec les utilisateurs."
+      },
+      {
+        "question": "Quel est un objectif clé du RSE by design ?",
+        "description": "Choisissez l’objectif réel.",
+        "answers": [
+          "Garantir que le site fonctionne même sans serveur grâce à la “magie verte”.",
+          "Atteindre le score maximal dans un quiz RSE.",
+          "Proposer un mode “nuit” qui économise l’électricité… sauf sur l’écran.",
+          "Réduire l'impact environnemental et social du produit tout au long de son cycle de vie."
+        ],
+        "correct_answer": 4,
+        "feedback": "Le RSE by design vise un impact responsable sur toute la durée du projet."
+      },
+      {
+        "question": "Quelle pratique contribue à un produit “RSE by design” ?",
+        "description": "Choisissez la pratique correcte.",
+        "answers": [
+          "Faire tourner l’application sur des serveurs alimentés au jus de raisin.",
+          "Ajouter un chatbot qui demande “As-tu recyclé aujourd’hui ?”.",
+          "Remplacer toutes les images par des photos de forêt pour “faire écolo”.",
+          "Choisir des technologies sobres et éviter les surconsommations inutiles."
+        ],
+        "correct_answer": 4,
+        "feedback": "La sobriété numérique est une bonne pratique clé."
+      },
+      {
+        "question": "Comment communiquer de manière responsable dans un projet RSE by design ?",
+        "description": "Sélectionnez la bonne réponse.",
+        "answers": [
+          "Exagérer les bénéfices pour impressionner les utilisateurs.",
+          "Être transparent sur les choix techniques, les impacts et les limites du projet.",
+          "Installer une bannière “100% écologique” sans vérifier.",
+          "Publier un rapport de 800 pages en police 3 pour prouver la sobriété."
+        ],
+        "correct_answer": 2,
+        "feedback": "La transparence est essentielle dans une communication responsable."
+      },
+      {
+        "question": "Parmi ces actions, laquelle s’inscrit réellement dans une démarche RSE by design ?",
+        "description": "Sélectionnez la bonne action.",
+        "answers": [
+          "Faire payer un “forfait carbone” à chaque clic.",
+          "Obliger le mode économie d’énergie sous peine de bannissement.",
+          "Impliquer la communauté pour tester, améliorer et proposer des usages responsables.",
+          "Demander aux utilisateurs de trier leurs fichiers comme des déchets."
+        ],
+        "correct_answer": 3,
+        "feedback": "La participation de la communauté est un levier essentiel du RSE by design."
+      }
+    ]
+  }
+}

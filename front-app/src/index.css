@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: url("./assets/fond1.jpg") no-repeat top right black;
+  background-size: 100% auto;
+  font-family: 'IM Fell French Canon', serif; /* ✅ police par défaut */
+  color: white; /* ✅ texte par défaut en blanc */
+}
+
+* {
+  color: inherit;
+  font-family: inherit; /* ✅ tous les éléments héritent de la police */
+}
