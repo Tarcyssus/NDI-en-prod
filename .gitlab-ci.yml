@@ -1,0 +1,103 @@
+stages:
+  - build
+  - deploy
+
+
+variables:
+  IMAGE_NAME: "ndi-en-prod-backend"
+  DOCKER_IMAGE_TAG_PHP: "ndi-en-prod-backend-php:$CI_COMMIT_SHORT_SHA"
+  DOCKER_IMAGE_TAG_NGINX: "ndi-en-prod-backend-nginx:$CI_COMMIT_SHORT_SHA"
+  DOCKER_IMAGE_TAG_MARIADB: "ndi-en-prod-backend-mariadb:$CI_COMMIT_SHORT_SHA"
+  CI_PROJET: "ns-ndi-en-prod"
+  KUBE_CONTEXT: labs-iut-info/labsagent:labsagentiut
+  KUBECTL: "kubectl --insecure-skip-tls-verify"
+  K8S_NAMESPACE: ns-ndi-en-prod
+
+.kube-context:
+  before_script:
+    - if [ -n "$KUBE_CONTEXT" ]; then kubectl config use-context "$KUBE_CONTEXT"; fi
+
+build-backend-sfapi:
+  stage: build
+  tags:
+    - docker
+  image: docker:24.0
+  services:
+    - docker:24.0-dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
+  script:
+    - docker buildx build --load -t $DOCKER_IMAGE_TAG_PHP -f build/sfapi/Dockerfile .
+    - docker tag $DOCKER_IMAGE_TAG_PHP $CI_REGISTRY/$CI_PROJET/$DOCKER_IMAGE_TAG_PHP
+    - docker push $CI_REGISTRY/$CI_PROJET/$DOCKER_IMAGE_TAG_PHP
+  only:
+    - main
+
+
+build-backend-nginx:
+  stage: build
+  tags:
+    - docker
+  image: docker:24.0
+  services:
+    - docker:24.0-dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
+  script:
+    - docker buildx build --load -t $DOCKER_IMAGE_TAG_NGINX -f build/nginx/Dockerfile build/nginx
+    - docker tag $DOCKER_IMAGE_TAG_NGINX $CI_REGISTRY/$CI_PROJET/$DOCKER_IMAGE_TAG_NGINX
+    - docker push $CI_REGISTRY/$CI_PROJET/$DOCKER_IMAGE_TAG_NGINX
+  variables:
+    DOCKER_IMAGE_TAG_NGINX: "ndi-en-prod-backend-nginx:$CI_COMMIT_SHORT_SHA"
+  only:
+    - main
+
+build-backend-mariadb:
+  stage: build
+  tags:
+    - docker
+  image: docker:24.0
+  services:
+    - docker:24.0-dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
+  script:
+    - docker buildx build --load -t $DOCKER_IMAGE_TAG_MARIADB -f build/mariadb/Dockerfile build/mariadb
+    - docker tag $DOCKER_IMAGE_TAG_MARIADB $CI_REGISTRY/$CI_PROJET/$DOCKER_IMAGE_TAG_MARIADB
+    - docker push $CI_REGISTRY/$CI_PROJET/$DOCKER_IMAGE_TAG_MARIADB
+  only:
+    - main
+
+
+deploy-backend:
+  stage: deploy
+  extends: [ .kube-context ]
+  tags:
+    - docker
+  environment:
+    name: production
+    url: https://ndi-en-prod-backend.labs.iut-larochelle.fr
+  image:
+    name: forge-registry.iut-larochelle.fr/kubectl/kubectl-envsubst:1.34.1
+    entrypoint: [ "" ]
+  script:
+    # Vérifie que le namespace existe
+    - if ! $KUBECTL get ns | grep $K8S_NAMESPACE ; then $KUBECTL create namespace $K8S_NAMESPACE ; fi
+
+    # Supprime et recrée le secret docker-registry
+    - $KUBECTL delete --ignore-not-found=true secret gitlab-auth --namespace=$K8S_NAMESPACE
+    - $KUBECTL create secret docker-registry gitlab-auth --docker-server=$CI_REGISTRY --docker-username=$CI_REGISTRY_USER --docker-password=$CI_JOB_TOKEN --namespace=$K8S_NAMESPACE
+
+    # Déploie les PVC
+    - cat k8s/mariadb/mariadb-pvc.yml | envsubst | $KUBECTL apply -f -
+
+    # Déploie le backend (Nginx + PHP dans un seul pod)
+    - cat k8s/backend/deployment.yml | envsubst | $KUBECTL apply -f -
+    - cat k8s/backend/service.yml | $KUBECTL apply -f -
+    - cat k8s/backend/ingress.yml | $KUBECTL apply -f -
+
+    # Déploie MariaDB
+    - cat k8s/mariadb/deployment.yml | envsubst | $KUBECTL apply -f -
+    - cat k8s/mariadb/service.yml | $KUBECTL apply -f -
+  only:
+    - main

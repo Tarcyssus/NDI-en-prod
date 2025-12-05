@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dp-ndi-en-prod-backend-mariadb
+  namespace: ns-ndi-en-prod
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      component: backend-mariadb
+  template:
+    metadata:
+      labels:
+        component: backend-mariadb
+    spec:
+      containers:
+        - name: mariadb
+          image: $CI_REGISTRY/$CI_PROJET/${DOCKER_IMAGE_TAG_MARIADB}
+          env:
+            - name: MYSQL_DATABASE
+              value: "dbsfapi"
+            - name: MYSQL_USER
+              value: "udbsfapi"
+            - name: MYSQL_PASSWORD
+              value: "pdbsfapi"
+            - name: MYSQL_ROOT_PASSWORD
+              value: "rdbsfapi"
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mariadb-data
+              mountPath: /var/lib/mysql
+
+      volumes:
+        - name: mariadb-data
+          persistentVolumeClaim:
+            claimName: mariadb-pvc
+
+      imagePullSecrets:
+        - name: gitlab-auth

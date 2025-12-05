@@ -1,0 +1,100 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dp-ndi-en-prod-backend
+  namespace: ns-ndi-en-prod
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      # ✅ Ajouter un securityContext au niveau du Pod
+      securityContext:
+        fsGroup: 33  # Groupe www-data
+        fsGroupChangePolicy: "OnRootMismatch"
+
+      initContainers:
+        - name: copy-and-migrate
+          image: ${CI_REGISTRY}/${CI_PROJET}/${DOCKER_IMAGE_TAG_PHP}
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+          command: [ "sh", "-c" ]
+          args:
+            - |
+              set -e
+              
+              echo "📦 Copie des fichiers Symfony..."
+              cp -R /app/sfapi/. /mnt/sfapi/
+              
+              echo "📁 Création des répertoires..."
+              mkdir -p /mnt/sfapi/var/cache/prod /mnt/sfapi/var/log /mnt/sfapi/public/uploads
+              
+              echo "🔧 Permissions..."
+              chown -R 33:33 /mnt/sfapi
+              chmod -R 755 /mnt/sfapi
+              chmod -R 777 /mnt/sfapi/var
+              
+              cd /mnt/sfapi
+    
+              php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
+              
+              echo "✅ Init terminé"
+          env:
+            - name: APP_ENV
+              value: "prod"
+            - name: DATABASE_URL
+              value: "mysql://udbsfapi:pdbsfapi@service-ndi-en-prod-backend-mariadb:3306/dbsfapi?serverVersion=10.11&charset=utf8mb4"
+          volumeMounts:
+            - name: sfapi-code
+              mountPath: /mnt/sfapi
+
+      containers:
+        - name: php
+          image: ${CI_REGISTRY}/${CI_PROJET}/${DOCKER_IMAGE_TAG_PHP}
+          # ✅ S'assurer que PHP-FPM tourne en www-data
+          securityContext:
+            runAsUser: 33
+            runAsGroup: 33
+            allowPrivilegeEscalation: false
+          workingDir: /mnt/sfapi
+          volumeMounts:
+            - name: sfapi-code
+              mountPath: /mnt/sfapi
+          env:
+            - name: APP_ENV
+              value: "prod"
+            - name: APP_DEBUG
+              value: "0"
+            - name: TRUSTED_PROXIES
+              value: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,127.0.0.1"
+            - name: DATABASE_URL
+              value: "mysql://udbsfapi:pdbsfapi@service-ndi-en-prod-backend-mariadb:3306/dbsfapi?serverVersion=10.11&charset=utf8mb4"
+
+        - name: nginx
+          image: ${CI_REGISTRY}/${CI_PROJET}/${DOCKER_IMAGE_TAG_NGINX}
+          ports:
+            - containerPort: 80
+          env:
+            - name: PHP_FPM_HOST
+              value: "localhost"
+            - name: PHP_FPM_PORT
+              value: "9000"
+          volumeMounts:
+            - name: sfapi-code
+              mountPath: /mnt/sfapi
+              readOnly: true  # ✅ Nginx n'a besoin que de lire
+
+      volumes:
+        - name: sfapi-code
+          emptyDir: {}
+
+      imagePullSecrets:
+        - name: gitlab-auth

@@ -1,0 +1,64 @@
+services:
+  php:
+    build:
+      context: .
+      dockerfile: ./build/sfapi/Dockerfile
+    container_name: sfapi-php
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ./sfapi
+        target: /app/sfapi
+    environment:
+      - APP_ENV=prod
+    networks:
+      - sfapi_network
+    depends_on:
+      - mariadb
+
+  mariadb:
+    build:
+      context: ./build/mariadb
+      dockerfile: Dockerfile
+    container_name: sfapi-mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: dbsfapi
+      MYSQL_USER: udbsfapi
+      MYSQL_PASSWORD: pdbsfapi
+      MYSQL_ROOT_PASSWORD: rdbsfapi
+    volumes:
+      - type: volume
+        source: mariadb_data
+        target: /var/lib/mysql
+    networks:
+      - sfapi_network
+    ports:
+      - 3306:3306
+
+  nginx:
+    build:
+      context: ./build/nginx
+      dockerfile: Dockerfile.dev
+    environment:
+      - PHP_FPM_HOST=php
+      - PHP_FPM_PORT=9000
+    container_name: sfapi-nginx
+    ports:
+      - 8000:80
+    volumes:
+      - type: bind
+        source: ./sfapi
+        target: /app/sfapi
+    depends_on:
+      - php
+    networks:
+      - sfapi_network
+
+volumes:
+  mariadb_data:
+    driver: local
+
+networks:
+  sfapi_network:
+    driver: bridge
